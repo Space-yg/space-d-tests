@@ -31,12 +31,10 @@
     "name": "Space.yg",
     "email": "yousefalaadin050@gmail.com"
   },
-  "license": "ISC",
+  "license": "MIT",
   "packageManager": "pnpm@10.12.4",
   "dependencies": {
     "typescript": "^5.8.3"
   },
-  "bin": {
-    "space-d-tests": "./dist/cli/index.js"
-  }
+  "bin": "./dist/cli/index.js"
 }

@@ -1,9 +1,10 @@
 import type { Config } from "./types"
+import fs from "fs"
 
 /** The default configurations */
 export const defaultConfig: Config = {
 	basePath: "./",
-	tsconfig: "tsconfig.json",
+	tsconfig: "tsconfig.test.json",
 } as const
 
 /**
@@ -16,11 +17,28 @@ export function defineConfig<T extends Partial<Config>>(config: T): T {
 }
 
 /**
+ * Setup the default configurations
+ * @param cwd The current working directory
+ * @returns A reference to the default configurations
+ */
+function setupDefaultConfig(cwd: string): Config {
+	// Check if tsconfig.test.json and tsconfig.json exist
+	if (fs.existsSync(cwd + "\\tsconfig.test.json")) defaultConfig.tsconfig = "tsconfig.test.json"
+	else if (fs.existsSync(cwd + "\\tsconfig.json")) defaultConfig.tsconfig = "tsconfig.json"
+	// So that it could outputs an error later
+	else defaultConfig.tsconfig = "tsconfig.test.json"
+
+	return defaultConfig
+}
+
+/**
  * Setup the configurations for the space-d-test framework
  * @param cwd The current working directory. Usually it's `process.cwd()`
  * @returns The configurations
  */
 export function setupConfig(cwd: string): Config {
+	setupDefaultConfig(cwd)
+
 	try {
 		// Try to get configuration
 		const { default: config } = require(cwd + "\\space-d-tests.config.ts")
