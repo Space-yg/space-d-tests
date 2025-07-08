@@ -1,0 +1,1 @@
+export { checkTSConfig } from "./runner"

@@ -1,0 +1,42 @@
+{
+  "name": "space-d-tests",
+  "version": "0.0.1",
+  "description": "Test TypeScript types",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./config": {
+      "types": "./src/config/index.ts",
+      "import": "./dist/config/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p ./tsconfig.app.json"
+  },
+  "keywords": [
+    "tests",
+    "typescript",
+    "types",
+    "space",
+    ".d.ts",
+    "test",
+    "declaration"
+  ],
+  "author": {
+    "name": "Space.yg",
+    "email": "yousefalaadin050@gmail.com"
+  },
+  "license": "ISC",
+  "packageManager": "pnpm@10.12.4",
+  "dependencies": {
+    "typescript": "^5.8.3"
+  },
+  "bin": {
+    "space-d-tests": "./dist/cli/index.js"
+  }
+}
